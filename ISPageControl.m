@@ -28,6 +28,8 @@
     self.activeImage   = nil;
     self.inactiveImage = nil;
     
+    [self removeObserver:self forKeyPath:@"numberOfPages"];
+    [self removeObserver:self forKeyPath:@"currentPage"];
     [super dealloc];
 }
 
