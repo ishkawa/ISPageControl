@@ -9,7 +9,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self startObservingKeys];
+        [self initialize];
     }
     return self;
 }
@@ -18,9 +18,18 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        [self startObservingKeys];
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize
+{
+    self.activeImage   = [UIImage imageNamed:@"active.png"];
+    self.inactiveImage = [UIImage imageNamed:@"inactive.png"];
+    
+    [self startObservingKeys];
+    [self customizeIndicators];
 }
 
 - (void)dealloc
@@ -46,6 +55,7 @@
            forKeyPath:@"currentPage"
               options:NSKeyValueObservingOptionNew
               context:nil];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
